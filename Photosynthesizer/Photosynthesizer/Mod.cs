@@ -13,3 +13,18 @@ namespace ONI_TraitMod
         }
     }
 }
+
+        [HarmonyPatch(typeof(SingleSliderSideScreen), "IsValidForTarget")]
+        public static class SingleSliderSideScreen_IsValidForTarget_Patch
+        {
+            public static bool Postfix(GameObject target)
+            {
+                if(target != null)
+                {
+                    if(target.GetComponent<WaterBasedGenerator> != null)
+                    {
+                        return false;
+                    }               
+                }
+            }
+        }
